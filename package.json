@@ -1,0 +1,12 @@
+{
+  "name": "ending-credit",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "yarn workspace backend dev",
+    "dev:mobile": "yarn workspace mobile start"
+  }
+}
