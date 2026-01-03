@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "6c2f1a94-1d3b-443d-a1fe-779d7fe17385"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.confetti77777.endingcredit",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    }
+  }
+}
