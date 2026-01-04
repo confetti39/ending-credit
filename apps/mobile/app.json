@@ -40,7 +40,10 @@
     "web": {
       "favicon": "./assets/splash-icon.png"
     },
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      "expo-font"
+    ],
     "extra": {
       "eas": {
         "projectId": "b0867efb-f1c9-4892-8125-d98470784b33"

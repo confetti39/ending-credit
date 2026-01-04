@@ -1,15 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Slot, Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Session } from "@supabase/supabase-js";
 import { View, ActivityIndicator } from "react-native";
 import { supabase } from "../lib/supabase";
+import * as SplashScreen from "expo-splash-screen";
+import { useFonts } from "expo-font";
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [session, setSession] = useState<Session | null>(null);
-  const [initialized, setInitialized] = useState(false);
+  const [authInitialized, setAuthInitialized] = useState(false);
   const segments = useSegments();
   const router = useRouter();
+
+  const [fontsLoaded] = useFonts({
+    "Pretendard-Regular": require("../assets/fonts/Pretendard-Regular.otf"),
+    "Pretendard-Medium": require("../assets/fonts/Pretendard-Medium.otf"),
+    "Pretendard-Bold": require("../assets/fonts/Pretendard-Bold.otf"),
+  });
 
   useEffect(() => {
     // Listen for auth state changes
@@ -17,7 +28,7 @@ export default function RootLayout() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
-      setInitialized(true);
+      setAuthInitialized(true);
     });
 
     return () => {
@@ -26,34 +37,40 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    if (!initialized) return;
+    if (!authInitialized || !fontsLoaded) return;
 
     const inLoginScreen = segments[0] === "login";
 
     if (session && inLoginScreen) {
-      // 로그인 상태인데 로그인 화면에 있으면 홈으로 이동
       router.replace("/");
     } else if (!session && !inLoginScreen) {
-      // 로그아웃 상태인데 로그인 화면이 아니면 로그인 화면으로 이동
       router.replace("/login");
     }
-  }, [session, initialized, segments]);
+  }, [session, authInitialized, fontsLoaded, segments]);
 
-  if (!initialized) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+  const onLayoutRootView = useCallback(async () => {
+    if (authInitialized && fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [authInitialized, fontsLoaded]);
+
+  if (!authInitialized || !fontsLoaded) {
+    return null;
+  }
+
+  // 세션이 없는데 로그인 화면이 아니라면, 내용을 렌더링하지 않고 리다이렉트를 기다림 (FOUC 방지)
+  const inLoginScreen = segments[0] === "login";
+  if (!session && !inLoginScreen) {
+    return <View style={{ flex: 1, backgroundColor: "black" }} />;
   }
 
   return (
-    <>
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
-    </>
+    </View>
   );
 }
