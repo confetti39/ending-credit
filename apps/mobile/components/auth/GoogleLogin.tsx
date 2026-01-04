@@ -1,18 +1,22 @@
 import {
   GoogleSignin,
-  GoogleSigninButton,
   isSuccessResponse,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
+import { HStack, Text } from "@ending-credit/ui";
 import { supabase } from "../../lib/supabase";
 import React from "react";
-import { TouchableOpacity, StyleSheet, Text } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 
 GoogleSignin.configure({
   scopes: ["https://www.googleapis.com/auth/drive.readonly"],
   webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_ID,
 });
 
+/**
+ * Google 로그인 버튼 컴포넌트
+ */
 export function GoogleLogin() {
   const onPressGoogleLogin = React.useCallback(async () => {
     try {
@@ -48,7 +52,22 @@ export function GoogleLogin() {
       onPress={onPressGoogleLogin}
       style={styles.buttonContainer}
     >
-      <Text style={styles.buttonText}>Google 계정으로 로그인</Text>
+      <HStack py={16} px={24} alignItems="center">
+        <Image
+          source={require("../../assets/google-logo.svg")}
+          style={{
+            width: 24,
+            aspectRatio: 1,
+          }}
+        />
+        <Text
+          variant="heading3"
+          weight="medium"
+          style={{ textAlign: "center", flex: 1 }}
+        >
+          Continue with Google
+        </Text>
+      </HStack>
     </TouchableOpacity>
   );
 }
@@ -56,15 +75,9 @@ export function GoogleLogin() {
 const styles = StyleSheet.create({
   buttonContainer: {
     width: "100%",
-    padding: 20,
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 24,
     alignContent: "center",
     justifyContent: "center",
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "500",
-    textAlign: "center",
   },
 });

@@ -1,7 +1,5 @@
 import { Image } from "expo-image";
-import { StyleSheet, View } from "react-native";
-import { Text } from "@ending-credit/ui";
-import { AppleLogin } from "../components/auth/AppleLogin";
+import { Text, VStack } from "@ending-credit/ui";
 import { GoogleLogin } from "../components/auth/GoogleLogin";
 import {
   useSafeAreaFrame,
@@ -13,7 +11,13 @@ export default function Login() {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
+    <VStack
+      flex={1}
+      p={20}
+      backgroundColor={"black"}
+      alignItems="center"
+      justifyContent="center"
+    >
       <Image
         source={require("../assets/logo-white.png")}
         style={{
@@ -22,28 +26,18 @@ export default function Login() {
         }}
       />
 
-      <View style={[styles.buttonContainer, { bottom: bottom + 16 }]}>
-        <Text variant="body2" weight="medium" style={{ textAlign: "center" }}>
+      <VStack position="absolute" bottom={bottom + 16} width="100%" gap={10}>
+        <Text
+          variant="body1"
+          weight="medium"
+          color="white"
+          style={{ textAlign: "center" }}
+        >
           Record your cinematic journey!
         </Text>
 
         <GoogleLogin />
-      </View>
-    </View>
+      </VStack>
+    </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "black",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  buttonContainer: {
-    position: "absolute",
-    width: "100%",
-    gap: 10,
-  },
-});

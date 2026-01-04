@@ -28,7 +28,7 @@ export function Text({
   style,
   variant = "body1",
   weight,
-  color = "white",
+  color = "black",
   ...props
 }: TextProps) {
   const getVariantStyle = (): TextStyle => {
