@@ -1,7 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Text, VStack } from "@ending-credit/ui";
 
-export default function Message() {
+/**
+ * Record Tab
+ */
+export default function Record() {
   return (
     <VStack
       style={styles.container}
@@ -9,7 +12,7 @@ export default function Message() {
       justifyContent="center"
     >
       <Text variant="heading1" color="black">
-        Message
+        Record
       </Text>
     </VStack>
   );

@@ -1,7 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Text, VStack } from "@ending-credit/ui";
 
-export default function Search() {
+/**
+ * Community Tab
+ */
+export default function Community() {
   return (
     <VStack
       style={styles.container}
@@ -9,7 +12,7 @@ export default function Search() {
       justifyContent="center"
     >
       <Text variant="heading1" color="black">
-        Search
+        Community
       </Text>
     </VStack>
   );

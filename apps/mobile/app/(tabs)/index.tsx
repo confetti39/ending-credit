@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Text, VStack } from "@ending-credit/ui";
 
+/**
+ * Home Tab
+ */
 export default function Index() {
   return (
     <VStack

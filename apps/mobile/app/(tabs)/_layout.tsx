@@ -1,5 +1,10 @@
 import { Tabs } from "expo-router";
-import { Home, Search, Bell, User } from "lucide-react-native";
+import {
+  Home,
+  UserRound,
+  Clapperboard,
+  MessagesSquare,
+} from "lucide-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
@@ -27,31 +32,29 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "홈",
           tabBarIcon: ({ color }) => <Home color={color} size={24} />,
         }}
       />
-      {/* FIXME: 임시로 추가한 라우트 */}
       <Tabs.Screen
-        name="search"
+        name="record"
         options={{
-          tabBarLabel: "Search",
-          tabBarIcon: ({ color }) => <Search color={color} size={24} />,
-        }}
-      />
-      {/* FIXME: 임시로 추가한 라우트 */}
-      <Tabs.Screen
-        name="message"
-        options={{
-          tabBarLabel: "Message",
-          tabBarIcon: ({ color }) => <Bell color={color} size={24} />,
+          tabBarLabel: "기록",
+          tabBarIcon: ({ color }) => <Clapperboard color={color} size={24} />,
         }}
       />
       <Tabs.Screen
-        name="mypage"
+        name="community"
         options={{
-          tabBarLabel: "My Page",
-          tabBarIcon: ({ color }) => <User color={color} size={24} />,
+          tabBarLabel: "커뮤니티",
+          tabBarIcon: ({ color }) => <MessagesSquare color={color} size={24} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel: "프로필",
+          tabBarIcon: ({ color }) => <UserRound color={color} size={24} />,
         }}
       />
     </Tabs>

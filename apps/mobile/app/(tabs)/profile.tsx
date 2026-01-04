@@ -3,7 +3,10 @@ import { Text, VStack } from "@ending-credit/ui";
 import { supabase } from "../../lib/supabase";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
-export default function MyPage() {
+/**
+ * Profile Tab
+ */
+export default function Profile() {
   const signOut = async () => {
     try {
       try {
@@ -28,7 +31,7 @@ export default function MyPage() {
       justifyContent="center"
     >
       <Text variant="heading2" color="black">
-        My Page
+        Profile
       </Text>
       <Button title="Logout" onPress={signOut} />
     </VStack>
