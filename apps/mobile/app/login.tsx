@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Text } from "@ending-credit/ui";
 import { AppleLogin } from "../components/auth/AppleLogin";
 import { GoogleLogin } from "../components/auth/GoogleLogin";
 import {
@@ -22,14 +23,7 @@ export default function Login() {
       />
 
       <View style={[styles.buttonContainer, { bottom: bottom + 16 }]}>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 14,
-            textAlign: "center",
-            fontFamily: "Pretendard-Medium",
-          }}
-        >
+        <Text variant="body2" weight="medium" style={{ textAlign: "center" }}>
           Record your cinematic journey!
         </Text>
 
