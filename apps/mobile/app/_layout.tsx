@@ -28,18 +28,14 @@ export default function RootLayout() {
   useEffect(() => {
     if (!initialized) return;
 
-    const inAuthGroup = segments[0] === "(auth)";
+    const inLoginScreen = segments[0] === "login";
 
-    if (session && !inAuthGroup) {
-      // User is signed in
-      // Redirect to home if needed, or stay where they are
-      // For now, we assume index is the home
-    } else if (!session) {
-      // User is not signed in
-      // Redirect to login if not already there
-      if (segments[0] !== "login") {
-        router.replace("/login");
-      }
+    if (session && inLoginScreen) {
+      // 로그인 상태인데 로그인 화면에 있으면 홈으로 이동
+      router.replace("/");
+    } else if (!session && !inLoginScreen) {
+      // 로그아웃 상태인데 로그인 화면이 아니면 로그인 화면으로 이동
+      router.replace("/login");
     }
   }, [session, initialized, segments]);
 
