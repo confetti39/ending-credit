@@ -6,6 +6,12 @@ import { View, ActivityIndicator } from "react-native";
 import { supabase } from "../lib/supabase";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
+GoogleSignin.configure({
+  scopes: ["https://www.googleapis.com/auth/drive.readonly"],
+  webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_ID,
+});
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -67,7 +73,7 @@ export default function RootLayout() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />

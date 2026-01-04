@@ -10,6 +10,7 @@
     "build:dev:ios": "eas build --platform ios --profile development-simulator"
   },
   "dependencies": {
+    "@ending-credit/ui": "*",
     "@react-native-google-signin/google-signin": "^16.1.1",
     "@supabase/supabase-js": "^2.89.0",
     "expo": "~54.0.30",
@@ -22,12 +23,13 @@
     "expo-router": "^6.0.21",
     "expo-splash-screen": "~31.0.13",
     "expo-status-bar": "~3.0.9",
+    "lucide-react-native": "^0.562.0",
     "react": "19.1.0",
     "react-native": "0.81.5",
     "react-native-mmkv": "3",
     "react-native-safe-area-context": "^5.6.2",
     "react-native-screens": "^4.19.0",
-    "@ending-credit/ui": "*"
+    "react-native-svg": "^15.15.1"
   },
   "devDependencies": {
     "@types/react": "~19.1.0",

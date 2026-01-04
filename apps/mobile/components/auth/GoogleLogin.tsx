@@ -9,11 +9,6 @@ import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 
-GoogleSignin.configure({
-  scopes: ["https://www.googleapis.com/auth/drive.readonly"],
-  webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_ID,
-});
-
 /**
  * Google 로그인 버튼 컴포넌트
  */
