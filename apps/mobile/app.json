@@ -17,8 +17,16 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.endingcredit.mobile",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.741408030672-ds5917ce5ofit02l0k23r4of3bhuk5aq"
+            ]
+          }
+        ]
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,6 +40,7 @@
     "web": {
       "favicon": "./assets/splash-icon.png"
     },
+    "plugins": ["@react-native-google-signin/google-signin"],
     "extra": {
       "eas": {
         "projectId": "b0867efb-f1c9-4892-8125-d98470784b33"
