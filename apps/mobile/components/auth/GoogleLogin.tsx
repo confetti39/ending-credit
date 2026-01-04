@@ -33,13 +33,13 @@ export function GoogleLogin() {
           }
         } catch (error: any) {
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-            // user cancelled the login flow
+            // 사용자가 로그인 흐름을 취소함
           } else if (error.code === statusCodes.IN_PROGRESS) {
-            // operation (e.g. sign in) is in progress already
+            // 이미 로그인 작업이 진행 중임
           } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-            // play services not available or outdated
+            // Google Play 서비스를 사용할 수 없거나 업데이트가 필요함
           } else {
-            // some other error happened
+            // 그 외 알 수 없는 에러 발생
             console.error("Google Login Error:", error);
           }
         }
