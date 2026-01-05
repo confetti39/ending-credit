@@ -29,7 +29,12 @@ create or replace function public.handle_new_user()
 returns trigger as $$
 begin
   insert into public.profiles (id, nickname, profile_image_url, bio)
-  values (new.id, new.raw_user_meta_data->>'nickname', new.raw_user_meta_data->>'avatar_url', '');
+  values (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'nickname', 'user_' || substr(new.id::text, 1, 8)),
+    new.raw_user_meta_data->>'avatar_url',
+    ''
+  );
   return new;
 end;
 $$ language plpgsql security definer;
