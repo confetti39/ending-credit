@@ -64,7 +64,7 @@ export default function RootLayout() {
     return null;
   }
 
-  // 세션이 없는데 로그인 화면이 아니라면, 내용을 렌더링하지 않고 리다이렉트를 기다림 (FOUC 방지)
+  // 세션이 없는데 로그인 화면이 아니라면, 내용을 렌더링하지 않고 리다이렉트를 기다림
   const inLoginScreen = segments[0] === "login";
   if (!session && !inLoginScreen) {
     return <View style={{ flex: 1, backgroundColor: "black" }} />;
@@ -72,9 +72,10 @@ export default function RootLayout() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="login" />
+        <Stack.Screen name="setup-profile" />
       </Stack>
       <StatusBar style="auto" />
     </View>
