@@ -24,8 +24,8 @@ export const userApi = {
     return {
       id: data.id,
       nickname: data.nickname,
-      profileImageUrl: data.profile_image_url,
-      bio: data.bio,
+      profileImageUrl: data.profile_image_url || undefined,
+      bio: data.bio || undefined,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
     } as Profile;
@@ -60,8 +60,8 @@ export const userApi = {
     return {
       id: data.id,
       nickname: data.nickname,
-      profileImageUrl: data.profile_image_url,
-      bio: data.bio,
+      profileImageUrl: data.profile_image_url || undefined,
+      bio: data.bio || undefined,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
     } as Profile;

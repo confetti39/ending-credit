@@ -1,8 +1,8 @@
 export interface Profile {
   id: string;
   nickname: string;
-  profileImageUrl: string | null;
-  bio: string | null;
+  profileImageUrl?: string;
+  bio?: string;
   createdAt: string;
   updatedAt: string;
 }
